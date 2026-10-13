@@ -2,7 +2,21 @@ import type { Metadata } from "next";
 import { company } from "@insucare/domain";
 import { Section } from "../../components/section";
 
-export const metadata: Metadata = { title: "Disclaimer" };
+import { absoluteUrl } from "../../lib/site";
+
+export const metadata: Metadata = {
+  title: "Disclaimer",
+  description: "Insurance solicitation and regulatory disclaimer for Insucare India Insurance Broking Pvt Ltd.",
+  alternates: {
+    canonical: absoluteUrl("/disclaimer")
+  },
+  openGraph: {
+    title: "Disclaimer | InsuCARE",
+    description: "Insurance solicitation and regulatory disclaimer for Insucare India Insurance Broking Pvt Ltd.",
+    url: absoluteUrl("/disclaimer"),
+    type: "website"
+  }
+};
 
 export default function DisclaimerPage() {
   return (

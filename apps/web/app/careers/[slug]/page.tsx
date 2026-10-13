@@ -10,12 +10,24 @@ export function generateStaticParams() {
   return jobs.map((job) => ({ slug: job.slug }));
 }
 
+import { absoluteUrl } from "../../../lib/site";
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const job = jobs.find((item) => item.slug === slug);
+  const pageUrl = absoluteUrl(`/careers/${slug}`);
   return {
     title: job?.title ?? "Career Opportunity",
-    description: job?.summary
+    description: job?.summary,
+    alternates: {
+      canonical: pageUrl
+    },
+    openGraph: {
+      title: `${job?.title ?? "Career Opportunity"} | InsuCARE`,
+      description: job?.summary,
+      url: pageUrl,
+      type: "website"
+    }
   };
 }
 

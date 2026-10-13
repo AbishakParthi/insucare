@@ -46,6 +46,21 @@ const nextConfig: NextConfig = {
       }
     ]
   },
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "insucare-platform-web.vercel.app"
+          }
+        ],
+        destination: "https://insucareindia.vercel.app/:path*",
+        permanent: true
+      }
+    ];
+  },
   async headers() {
     return [
       {

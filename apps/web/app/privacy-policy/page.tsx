@@ -2,7 +2,21 @@ import type { Metadata } from "next";
 import { company } from "@insucare/domain";
 import { Section } from "../../components/section";
 
-export const metadata: Metadata = { title: "Privacy Policy" };
+import { absoluteUrl } from "../../lib/site";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "Privacy policy and personal data protection practices of Insucare India Insurance Broking Pvt Ltd.",
+  alternates: {
+    canonical: absoluteUrl("/privacy-policy")
+  },
+  openGraph: {
+    title: "Privacy Policy | InsuCARE",
+    description: "Privacy policy and personal data protection practices of Insucare India Insurance Broking Pvt Ltd.",
+    url: absoluteUrl("/privacy-policy"),
+    type: "website"
+  }
+};
 
 export default function PrivacyPolicyPage() {
   return (

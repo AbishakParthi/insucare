@@ -5,7 +5,16 @@ import { Section } from "../../components/section";
 
 export const metadata: Metadata = {
   title: "Admin Dashboard",
-  description: "Secure InsuCARE admin dashboard overview for content, enquiries, careers and analytics."
+  description: "Secure InsuCARE admin dashboard overview for content, enquiries, careers and analytics.",
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false
+    }
+  }
 };
 
 export default function AdminPage() {

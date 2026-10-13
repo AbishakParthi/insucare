@@ -7,11 +7,19 @@ import { Section } from "../components/section";
 import { FadeIn, FadeInStagger, FadeInStaggerItem, ScaleInHover } from "../components/animated";
 import { PartnerLogo } from "../components/partner-logo";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.insucareindia.com";
+import { SITE_URL } from "../lib/site";
 
 export const metadata: Metadata = {
+  title: "InsuCARE | Insurance Broking & Risk Advisory",
+  description: "IRDAI registered insurance broking solutions for individuals, families, SMEs, startups and enterprises in India.",
   alternates: {
-    canonical: `${siteUrl}`
+    canonical: SITE_URL
+  },
+  openGraph: {
+    title: "InsuCARE | Protecting What Matters Most",
+    description: "Trusted insurance broking, risk advisory and claims assistance.",
+    url: SITE_URL,
+    type: "website"
   }
 };
 

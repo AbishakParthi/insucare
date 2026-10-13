@@ -5,8 +5,9 @@ import { ArrowRight, Shield } from "lucide-react";
 import { CtaBand } from "../../components/cta-band";
 import { Section } from "../../components/section";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.insucareindia.com";
-const pageUrl = `${siteUrl}/services`;
+import { absoluteUrl } from "../../lib/site";
+
+const pageUrl = absoluteUrl("/services");
 
 export const metadata: Metadata = {
   title: "Insurance Services | InsuCARE",

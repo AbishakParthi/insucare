@@ -11,27 +11,28 @@ export function generateStaticParams() {
   return services.map((service) => ({ slug: service.slug }));
 }
 
+import { absoluteUrl, SITE_URL } from "../../../lib/site";
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const service = services.find((item) => item.slug === slug);
   if (!service) return {};
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.insucareindia.com";
-  const serviceUrl = `${siteUrl}/services/${slug}`;
+  const serviceUrl = absoluteUrl(`/services/${slug}`);
 
   return {
     title: service.title,
     description: service.summary,
     alternates: { canonical: serviceUrl },
     openGraph: {
-      title: service.title,
+      title: `${service.title} | InsuCARE`,
       description: service.summary,
       url: serviceUrl,
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
-      title: service.title,
+      title: `${service.title} | InsuCARE`,
       description: service.summary,
     },
   };
@@ -41,6 +42,8 @@ export default async function ServiceDetailPage({ params }: Props) {
   const { slug } = await params;
   const service = services.find((item) => item.slug === slug);
   if (!service) notFound();
+
+  const serviceUrl = absoluteUrl(`/services/${slug}`);
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -59,9 +62,11 @@ export default async function ServiceDetailPage({ params }: Props) {
     "@context": "https://schema.org",
     "@type": "Service",
     serviceType: service.title,
+    url: serviceUrl,
     provider: {
       "@type": "InsuranceAgency",
-      name: company.displayName
+      name: company.displayName,
+      url: SITE_URL
     },
     description: service.summary
   };

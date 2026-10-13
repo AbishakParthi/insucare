@@ -21,13 +21,13 @@ const sans = Manrope({
   weight: ["400", "500", "600", "700", "800"],
   variable: "--font-sans"
 });
+import { SITE_URL } from "../lib/site";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.insucareindia.com";
 const gaId = process.env.NEXT_PUBLIC_GA_ID ?? "G-XXXXXXXXXX";
 const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID ?? "xxxxxxxxx";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: `${company.displayName} | Insurance Broking & Risk Advisory`,
     template: `%s | ${company.displayName}`
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   description:
     "IRDAI registered insurance broking solutions for individuals, families, SMEs, startups and enterprises in India.",
   keywords: ["Insurance Broking", "Risk Advisory", "Health Insurance", "Life Insurance", "Motor Insurance", "India", "Corporate Insurance", "Claims Assistance"],
-  authors: [{ name: company.displayName, url: siteUrl }],
+  authors: [{ name: company.displayName, url: SITE_URL }],
   creator: company.displayName,
   publisher: company.displayName,
   formatDetection: {
@@ -46,26 +46,24 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${company.displayName} | Protecting What Matters Most`,
     description: "Trusted insurance broking, risk advisory and claims assistance.",
-    url: siteUrl,
+    url: SITE_URL,
     siteName: company.displayName,
-    images: ["/brand/insucare-logo.jpeg"],
+    images: [`${SITE_URL}/brand/insucare-logo.jpeg`],
     locale: "en_IN",
     type: "website"
   },
   twitter: {
     card: "summary_large_image",
     title: `${company.displayName} Insurance Broking`,
-    description: "Transparent insurance advisory and claims support."
+    description: "Transparent insurance advisory and claims support.",
+    images: [`${SITE_URL}/brand/insucare-logo.jpeg`]
   },
   icons: {
     icon: "/favicon.svg",
     apple: "/favicon.svg"
   },
   verification: {
-    google: "google-site-verification-placeholder", // Replace with actual GSC code
-  },
-  alternates: {
-    canonical: siteUrl,
+    google: "google-site-verification-placeholder", // Replace with actual GSC verification code
   }
 };
 
@@ -73,11 +71,11 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "InsuranceAgency",
   name: company.displayName,
-  url: siteUrl,
-  logo: `${siteUrl}/brand/insucare-logo.jpeg`,
+  url: SITE_URL,
+  logo: `${SITE_URL}/brand/insucare-logo.jpeg`,
   contactPoint: {
     "@type": "ContactPoint",
-    telephone: "+91-9999999999", // Update from company domain if available
+    telephone: company.phone,
     contactType: "customer service"
   }
 };
@@ -86,10 +84,10 @@ const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: company.displayName,
-  url: siteUrl,
+  url: SITE_URL,
   potentialAction: {
     "@type": "SearchAction",
-    target: `${siteUrl}/search?q={search_term_string}`,
+    target: `${SITE_URL}/search?q={search_term_string}`,
     "query-input": "required name=search_term_string"
   }
 };

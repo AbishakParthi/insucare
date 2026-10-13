@@ -10,20 +10,21 @@ export function generateStaticParams() {
   return blogs.map((post) => ({ slug: post.slug }));
 }
 
+import { absoluteUrl, SITE_URL } from "../../../lib/site";
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = blogs.find((item) => item.slug === slug);
   if (!post) return {};
   
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.insucareindia.com";
-  const postUrl = `${siteUrl}/blogs/${slug}`;
+  const postUrl = absoluteUrl(`/blogs/${slug}`);
 
   return {
     title: post.title,
     description: post.excerpt,
     alternates: { canonical: postUrl },
     openGraph: {
-      title: post.title,
+      title: `${post.title} | InsuCARE`,
       description: post.excerpt,
       url: postUrl,
       type: "article",
@@ -32,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title,
+      title: `${post.title} | InsuCARE`,
       description: post.excerpt,
     },
   };
@@ -43,30 +44,31 @@ export default async function BlogDetailPage({ params }: Props) {
   const post = blogs.find((item) => item.slug === slug);
   if (!post) notFound();
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.insucareindia.com";
+  const postUrl = absoluteUrl(`/blogs/${slug}`);
+
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
     description: post.excerpt,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": postUrl
+    },
     author: {
       "@type": "Organization",
       name: company.displayName,
-      url: siteUrl
+      url: SITE_URL
     },
     publisher: {
       "@type": "Organization",
       name: company.displayName,
       logo: {
         "@type": "ImageObject",
-        url: `${siteUrl}/brand/insucare-logo.jpeg`
+        url: `${SITE_URL}/brand/insucare-logo.jpeg`
       }
     },
-    datePublished: post.publishedAt,
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": `${siteUrl}/blogs/${slug}`
-    }
+    datePublished: post.publishedAt
   };
 
   return (

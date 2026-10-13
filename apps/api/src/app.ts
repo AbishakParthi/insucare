@@ -21,6 +21,8 @@ export function createApp() {
         const allowedOrigins = config.WEB_ORIGIN.split(",").map((o) => o.trim());
         if (
           allowedOrigins.includes(origin) ||
+          origin === "https://insucareindia.vercel.app" ||
+          (origin.startsWith("https://insucareindia-") && origin.endsWith(".vercel.app")) ||
           (origin.startsWith("https://insucare-platform-") && origin.endsWith(".vercel.app"))
         ) {
           callback(null, true);

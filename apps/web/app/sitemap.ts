@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
 import { blogs, jobs, services } from "@insucare/domain";
+import { SITE_URL } from "../lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.insucareindia.com";
   
   type RouteDef = {
     url: string;
@@ -27,26 +27,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticRoutes: MetadataRoute.Sitemap = staticPaths.map((route) => ({
     ...route,
-    url: `${siteUrl}${route.url}`,
+    url: `${SITE_URL}${route.url}`,
     lastModified: new Date()
   }));
 
   const serviceRoutes: MetadataRoute.Sitemap = services.map((service) => ({
-    url: `${siteUrl}/services/${service.slug}`,
+    url: `${SITE_URL}/services/${service.slug}`,
     lastModified: new Date(),
     changeFrequency: "weekly",
     priority: 0.8
   }));
 
   const blogRoutes: MetadataRoute.Sitemap = blogs.map((post) => ({
-    url: `${siteUrl}/blogs/${post.slug}`,
+    url: `${SITE_URL}/blogs/${post.slug}`,
     lastModified: new Date(post.publishedAt),
     changeFrequency: "monthly",
     priority: 0.7
   }));
 
   const jobRoutes: MetadataRoute.Sitemap = jobs.map((job) => ({
-    url: `${siteUrl}/careers/${job.slug}`,
+    url: `${SITE_URL}/careers/${job.slug}`,
     lastModified: new Date(),
     changeFrequency: "weekly",
     priority: 0.6

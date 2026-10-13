@@ -4,9 +4,20 @@ import { Award, Compass, Eye, HeartHandshake, Scale } from "lucide-react";
 import { CtaBand } from "../../components/cta-band";
 import { Section } from "../../components/section";
 
+import { absoluteUrl } from "../../lib/site";
+
 export const metadata: Metadata = {
   title: "About Us",
-  description: "Learn about Insucare India Insurance Broking Pvt Ltd, leadership, mission, values and IRDAI compliance."
+  description: "Learn about Insucare India Insurance Broking Pvt Ltd, leadership, mission, values and IRDAI compliance.",
+  alternates: {
+    canonical: absoluteUrl("/about")
+  },
+  openGraph: {
+    title: "About Us | InsuCARE",
+    description: "Learn about Insucare India Insurance Broking Pvt Ltd, leadership, mission, values and IRDAI compliance.",
+    url: absoluteUrl("/about"),
+    type: "website"
+  }
 };
 
 export default function AboutPage() {

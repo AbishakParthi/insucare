@@ -4,9 +4,20 @@ import { FileCheck2 } from "lucide-react";
 import { ContactForm } from "../../components/contact-form";
 import { Section } from "../../components/section";
 
+import { absoluteUrl } from "../../lib/site";
+
 export const metadata: Metadata = {
   title: "Claims Assistance",
-  description: "Claim notification, documentation, insurer coordination, survey support and settlement follow-up."
+  description: "Claim notification, documentation, insurer coordination, survey support and settlement follow-up.",
+  alternates: {
+    canonical: absoluteUrl("/claims-assistance")
+  },
+  openGraph: {
+    title: "Claims Assistance | InsuCARE",
+    description: "Claim notification, documentation, insurer coordination, survey support and settlement follow-up.",
+    url: absoluteUrl("/claims-assistance"),
+    type: "website"
+  }
 };
 
 export default function ClaimsPage() {

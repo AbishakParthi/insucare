@@ -2,7 +2,21 @@ import type { Metadata } from "next";
 import { company } from "@insucare/domain";
 import { Section } from "../../components/section";
 
-export const metadata: Metadata = { title: "Terms & Conditions" };
+import { absoluteUrl } from "../../lib/site";
+
+export const metadata: Metadata = {
+  title: "Terms & Conditions",
+  description: "Terms and conditions for using the InsuCARE website and advisory services.",
+  alternates: {
+    canonical: absoluteUrl("/terms-and-conditions")
+  },
+  openGraph: {
+    title: "Terms & Conditions | InsuCARE",
+    description: "Terms and conditions for using the InsuCARE website and advisory services.",
+    url: absoluteUrl("/terms-and-conditions"),
+    type: "website"
+  }
+};
 
 export default function TermsPage() {
   return (

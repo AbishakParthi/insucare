@@ -4,8 +4,9 @@ import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { ContactForm } from "../../components/contact-form";
 import { Section } from "../../components/section";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.insucareindia.com";
-const pageUrl = `${siteUrl}/contact`;
+import { absoluteUrl, SITE_URL } from "../../lib/site";
+
+const pageUrl = absoluteUrl("/contact");
 
 export const metadata: Metadata = {
   title: "Contact Us | InsuCARE",
@@ -29,9 +30,9 @@ export default function ContactPage() {
     "@context": "https://schema.org",
     "@type": "InsuranceAgency",
     name: company.displayName,
-    image: `${siteUrl}/brand/insucare-logo.jpeg`,
-    "@id": siteUrl,
-    url: siteUrl,
+    image: `${SITE_URL}/brand/insucare-logo.jpeg`,
+    "@id": pageUrl,
+    url: pageUrl,
     telephone: company.phone,
     address: {
       "@type": "PostalAddress",

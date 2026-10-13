@@ -2,7 +2,21 @@ import type { Metadata } from "next";
 import { company, partners, serviceCategories } from "@insucare/domain";
 import { Section } from "../../components/section";
 
-export const metadata: Metadata = { title: "Company Brochure" };
+import { absoluteUrl } from "../../lib/site";
+
+export const metadata: Metadata = {
+  title: "Company Brochure",
+  description: "InsuCARE company brochure - insurance broking, risk advisory and claims assistance services.",
+  alternates: {
+    canonical: absoluteUrl("/brochure")
+  },
+  openGraph: {
+    title: "Company Brochure | InsuCARE",
+    description: "InsuCARE company brochure - insurance broking, risk advisory and claims assistance services.",
+    url: absoluteUrl("/brochure"),
+    type: "website"
+  }
+};
 
 export default function BrochurePage() {
   return (

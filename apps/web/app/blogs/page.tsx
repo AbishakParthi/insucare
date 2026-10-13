@@ -3,8 +3,9 @@ import Link from "next/link";
 import { blogCategories, blogs, company } from "@insucare/domain";
 import { Section } from "../../components/section";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.insucareindia.com";
-const pageUrl = `${siteUrl}/blogs`;
+import { absoluteUrl } from "../../lib/site";
+
+const pageUrl = absoluteUrl("/blogs");
 
 export const metadata: Metadata = {
   title: "Blogs | Insurance Insights",
@@ -38,7 +39,7 @@ export default function BlogsPage() {
       "@type": "BlogPosting",
       headline: post.title,
       description: post.excerpt,
-      url: `${siteUrl}/blogs/${post.slug}`,
+      url: absoluteUrl(`/blogs/${post.slug}`),
       datePublished: post.publishedAt
     }))
   };

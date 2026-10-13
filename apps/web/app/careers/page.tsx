@@ -5,9 +5,20 @@ import { Briefcase } from "lucide-react";
 import { ContactForm } from "../../components/contact-form";
 import { Section } from "../../components/section";
 
+import { absoluteUrl } from "../../lib/site";
+
 export const metadata: Metadata = {
   title: "Careers",
-  description: "Join InsuCARE across insurance sales, claims coordination and risk advisory roles."
+  description: "Join InsuCARE across insurance sales, claims coordination and risk advisory roles.",
+  alternates: {
+    canonical: absoluteUrl("/careers")
+  },
+  openGraph: {
+    title: "Careers | InsuCARE",
+    description: "Join InsuCARE across insurance sales, claims coordination and risk advisory roles.",
+    url: absoluteUrl("/careers"),
+    type: "website"
+  }
 };
 
 export default function CareersPage() {
