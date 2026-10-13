@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Insucare - Insurance Broking & Risk Advisory",
-    short_name: "Insucare",
+    name: "InsuCARE - Insurance Solutions",
+    short_name: "InsuCARE",
     description: "IRDAI registered insurance broking solutions for individuals, families, SMEs, startups and enterprises in India.",
     start_url: "/",
     display: "standalone",

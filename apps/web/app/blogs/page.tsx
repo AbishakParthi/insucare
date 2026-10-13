@@ -8,7 +8,7 @@ import { absoluteUrl } from "../../lib/site";
 const pageUrl = absoluteUrl("/blogs");
 
 export const metadata: Metadata = {
-  title: "Blogs | Insurance Insights",
+  title: "Insurance Insights",
   description: "Insurance education, risk advisory and employee benefits insights from InsuCARE.",
   alternates: { canonical: pageUrl },
   openGraph: {

@@ -10,7 +10,7 @@ import { absoluteUrl } from "../../lib/site";
 const pageUrl = absoluteUrl("/services");
 
 export const metadata: Metadata = {
-  title: "Insurance Services | InsuCARE",
+  title: "Insurance Services",
   description: "Corporate, group, retail and specialized insurance broking services from InsuCARE.",
   alternates: { canonical: pageUrl },
   openGraph: {

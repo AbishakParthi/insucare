@@ -29,7 +29,7 @@ const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID ?? "xxxxxxxxx";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${company.displayName} | Insurance Broking & Risk Advisory`,
+    default: "InsuCARE | Insurance Solutions",
     template: `%s | ${company.displayName}`
   },
   description:
@@ -44,17 +44,17 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: `${company.displayName} | Protecting What Matters Most`,
+    title: "InsuCARE | Insurance Solutions",
     description: "Trusted insurance broking, risk advisory and claims assistance.",
-    url: SITE_URL,
-    siteName: company.displayName,
+    url: "https://insucareindia.vercel.app/",
+    siteName: "InsuCARE",
     images: [`${SITE_URL}/brand/insucare-logo.jpeg`],
     locale: "en_IN",
     type: "website"
   },
   twitter: {
     card: "summary_large_image",
-    title: `${company.displayName} Insurance Broking`,
+    title: "InsuCARE | Insurance Solutions",
     description: "Transparent insurance advisory and claims support.",
     images: [`${SITE_URL}/brand/insucare-logo.jpeg`]
   },
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     apple: "/favicon.svg"
   },
   verification: {
-    google: "google-site-verification-placeholder", // Replace with actual GSC verification code
+    google: "google1d171594fa4b8932",
   }
 };
 
@@ -83,13 +83,12 @@ const organizationSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: company.displayName,
-  url: SITE_URL,
-  potentialAction: {
-    "@type": "SearchAction",
-    target: `${SITE_URL}/search?q={search_term_string}`,
-    "query-input": "required name=search_term_string"
-  }
+  name: "InsuCARE",
+  alternateName: [
+    "InsuCare",
+    "InsuCARE India Insurance Broking"
+  ],
+  url: "https://insucareindia.vercel.app/"
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

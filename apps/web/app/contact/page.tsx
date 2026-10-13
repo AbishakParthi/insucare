@@ -9,7 +9,7 @@ import { absoluteUrl, SITE_URL } from "../../lib/site";
 const pageUrl = absoluteUrl("/contact");
 
 export const metadata: Metadata = {
-  title: "Contact Us | InsuCARE",
+  title: "Contact Us",
   description: "Contact InsuCARE for insurance consultation, claims assistance, corporate risk advisory and career enquiries.",
   alternates: { canonical: pageUrl },
   openGraph: {
