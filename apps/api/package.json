@@ -8,7 +8,7 @@
     "build": "prisma generate && tsc -p tsconfig.json",
     "start": "node dist/src/server.js",
     "typecheck": "tsc --noEmit",
-    "prisma:generate": "dotenv -e ../../.env -- prisma generate",
+    "prisma:generate": "prisma generate",
     "prisma:migrate": "dotenv -e ../../.env -- prisma migrate dev",
     "seed": "dotenv -e ../../.env -- tsx prisma/seed.ts"
   },

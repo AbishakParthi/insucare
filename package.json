@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "npm run dev --workspace=@insucare/web",
     "dev:api": "npm run dev --workspace=@insucare/api",
-    "build": "npm run build --workspaces --if-present",
+    "build": "npm run build -w @insucare/domain && npm run build -w @insucare/api && npm run build -w @insucare/web",
     "build:api": "npm run build -w @insucare/domain && npm run build -w @insucare/api",
     "build:web": "npm run build -w @insucare/domain && npm run build -w @insucare/web",
     "start": "npm run start:api",
