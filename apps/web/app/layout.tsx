@@ -29,11 +29,11 @@ const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID ?? "xxxxxxxxx";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "InsuCARE | Insurance Solutions",
+    default: "InsuCARE | Insurance Broking & Risk Advisory",
     template: `%s | ${company.displayName}`
   },
   description:
-    "IRDAI registered insurance broking solutions for individuals, families, SMEs, startups and enterprises in India.",
+    "InsuCARE provides insurance broking, risk advisory, and claims support for retail and corporate clients in India.",
   keywords: ["Insurance Broking", "Risk Advisory", "Health Insurance", "Life Insurance", "Motor Insurance", "India", "Corporate Insurance", "Claims Assistance"],
   authors: [{ name: company.displayName, url: SITE_URL }],
   creator: company.displayName,
@@ -44,8 +44,8 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "InsuCARE | Insurance Solutions",
-    description: "Trusted insurance broking, risk advisory and claims assistance.",
+    title: "InsuCARE | Insurance Broking & Risk Advisory",
+    description: "InsuCARE provides insurance broking, risk advisory, and claims support for retail and corporate clients in India.",
     url: "https://insucareindia.vercel.app/",
     siteName: "InsuCARE",
     images: [`${SITE_URL}/brand/insucare-logo.jpeg`],
@@ -54,8 +54,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "InsuCARE | Insurance Solutions",
-    description: "Transparent insurance advisory and claims support.",
+    title: "InsuCARE | Insurance Broking & Risk Advisory",
+    description: "InsuCARE provides insurance broking, risk advisory, and claims support for retail and corporate clients in India.",
     images: [`${SITE_URL}/brand/insucare-logo.jpeg`]
   },
   icons: {
@@ -70,13 +70,26 @@ export const metadata: Metadata = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "InsuranceAgency",
-  name: company.displayName,
-  url: SITE_URL,
+  name: "InsuCARE",
+  legalName: company.legalName,
+  url: "https://insucareindia.vercel.app/",
   logo: `${SITE_URL}/brand/insucare-logo.jpeg`,
+  description: "InsuCARE provides insurance broking, risk advisory, and claims support for retail and corporate clients in India.",
+  email: company.email,
+  telephone: company.phone,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "1-2-36/2, Goodlife Retreat, 2nd Floor, Kakatiya Nagar",
+    addressLocality: "Hyderabad",
+    postalCode: "500007",
+    addressRegion: "Telangana",
+    addressCountry: "IN"
+  },
   contactPoint: {
     "@type": "ContactPoint",
     telephone: company.phone,
-    contactType: "customer service"
+    contactType: "customer service",
+    email: company.email
   }
 };
 
@@ -85,8 +98,9 @@ const websiteSchema = {
   "@type": "WebSite",
   name: "InsuCARE",
   alternateName: [
+    "Insucare India Insurance Broking Private Limited",
     "InsuCare",
-    "InsuCARE India Insurance Broking"
+    "Insucare India Insurance Broking Pvt Ltd"
   ],
   url: "https://insucareindia.vercel.app/"
 };

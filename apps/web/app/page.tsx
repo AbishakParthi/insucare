@@ -10,14 +10,14 @@ import { PartnerLogo } from "../components/partner-logo";
 import { SITE_URL } from "../lib/site";
 
 export const metadata: Metadata = {
-  title: "InsuCARE | Insurance Solutions",
-  description: "IRDAI registered insurance broking solutions for individuals, families, SMEs, startups and enterprises in India.",
+  title: "InsuCARE | Insurance Broking & Risk Advisory",
+  description: "InsuCARE provides insurance broking, risk advisory, and claims support for retail and corporate clients in India.",
   alternates: {
     canonical: "https://insucareindia.vercel.app/"
   },
   openGraph: {
-    title: "InsuCARE | Insurance Solutions",
-    description: "Trusted insurance broking, risk advisory and claims assistance.",
+    title: "InsuCARE | Insurance Broking & Risk Advisory",
+    description: "InsuCARE provides insurance broking, risk advisory, and claims support for retail and corporate clients in India.",
     url: "https://insucareindia.vercel.app/",
     siteName: "InsuCARE",
     type: "website"

@@ -36,8 +36,9 @@ export default function ContactPage() {
     telephone: company.phone,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Kakatiya Nagar",
+      streetAddress: "1-2-36/2, Goodlife Retreat, 2nd Floor, Kakatiya Nagar",
       addressLocality: "Hyderabad",
+      addressRegion: "Telangana",
       postalCode: "500007",
       addressCountry: "IN"
     },
