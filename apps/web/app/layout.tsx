@@ -67,49 +67,56 @@ export const metadata: Metadata = {
   }
 };
 
-const organizationSchema = {
+const schemaGraph = {
   "@context": "https://schema.org",
-  "@type": "InsuranceAgency",
-  name: "InsuCARE",
-  legalName: company.legalName,
-  url: "https://insucareindia.vercel.app/",
-  logo: `${SITE_URL}/brand/insucare-logo.jpeg`,
-  description: "InsuCARE provides insurance broking, risk advisory, and claims support for retail and corporate clients in India.",
-  email: company.email,
-  telephone: company.phone,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "1-2-36/2, Goodlife Retreat, 2nd Floor, Kakatiya Nagar",
-    addressLocality: "Hyderabad",
-    postalCode: "500007",
-    addressRegion: "Telangana",
-    addressCountry: "IN"
-  },
-  contactPoint: {
-    "@type": "ContactPoint",
-    telephone: company.phone,
-    contactType: "customer service",
-    email: company.email
-  }
-};
-
-const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "InsuCARE",
-  alternateName: [
-    "Insucare India Insurance Broking Private Limited",
-    "InsuCare",
-    "Insucare India Insurance Broking Pvt Ltd",
-    "insucareindia.vercel.app"
-  ],
-  url: "https://insucareindia.vercel.app/",
-  publisher: {
-    "@type": "InsuranceAgency",
-    name: "InsuCARE",
-    url: "https://insucareindia.vercel.app/",
-    logo: `${SITE_URL}/brand/insucare-logo.jpeg`
-  }
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://insucareindia.vercel.app/#website",
+      "url": "https://insucareindia.vercel.app/",
+      "name": "InsuCARE",
+      "alternateName": [
+        "Insucare India Insurance Broking Private Limited",
+        "InsuCare",
+        "Insucare India Insurance Broking Pvt Ltd",
+        "insucareindia.vercel.app"
+      ],
+      "publisher": {
+        "@id": "https://insucareindia.vercel.app/#organization"
+      },
+      "inLanguage": "en-IN"
+    },
+    {
+      "@type": ["InsuranceAgency", "Organization"],
+      "@id": "https://insucareindia.vercel.app/#organization",
+      "name": "InsuCARE",
+      "legalName": company.legalName,
+      "url": "https://insucareindia.vercel.app/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${SITE_URL}/brand/insucare-logo.jpeg`,
+        "caption": "InsuCARE Logo"
+      },
+      "image": `${SITE_URL}/brand/insucare-logo.jpeg`,
+      "description": "InsuCARE provides insurance broking, risk advisory, and claims support for retail and corporate clients in India.",
+      "email": company.email,
+      "telephone": company.phone,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1-2-36/2, Goodlife Retreat, 2nd Floor, Kakatiya Nagar",
+        "addressLocality": "Hyderabad",
+        "postalCode": "500007",
+        "addressRegion": "Telangana",
+        "addressCountry": "IN"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": company.phone,
+        "contactType": "customer service",
+        "email": company.email
+      }
+    }
+  ]
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -144,14 +151,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           }}
         />
 
-        {/* Global Schemas */}
+        {/* Global Schema Graph */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaGraph) }}
         />
       </body>
     </html>
