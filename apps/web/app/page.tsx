@@ -37,11 +37,12 @@ export default function HomePage() {
           <div>
             <FadeInStaggerItem>
               <p className="inline-flex rounded-full border border-champagne/40 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.3em] text-champagne">
-                IRDAI Registered Insurance Broker
+                InsuCARE &bull; IRDAI Registered Insurance Broker
               </p>
             </FadeInStaggerItem>
             <FadeInStaggerItem>
               <h1 className="mt-7 max-w-4xl font-display text-6xl font-bold leading-[0.95] text-balance md:text-8xl">
+                <span className="text-champagne block text-3xl sm:text-4xl md:text-5xl font-sans font-extrabold uppercase tracking-wider mb-3">InsuCARE</span>
                 {brand.tagline}
               </h1>
             </FadeInStaggerItem>

@@ -100,9 +100,16 @@ const websiteSchema = {
   alternateName: [
     "Insucare India Insurance Broking Private Limited",
     "InsuCare",
-    "Insucare India Insurance Broking Pvt Ltd"
+    "Insucare India Insurance Broking Pvt Ltd",
+    "insucareindia.vercel.app"
   ],
-  url: "https://insucareindia.vercel.app/"
+  url: "https://insucareindia.vercel.app/",
+  publisher: {
+    "@type": "InsuranceAgency",
+    name: "InsuCARE",
+    url: "https://insucareindia.vercel.app/",
+    logo: `${SITE_URL}/brand/insucare-logo.jpeg`
+  }
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
