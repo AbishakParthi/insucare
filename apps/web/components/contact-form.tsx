@@ -15,6 +15,8 @@ const schema = z.object({
 
 type FormValues = z.infer<typeof schema>;
 
+const DEFAULT_WEB3FORMS_KEY = "64515490-6199-484b-8637-3b00a60ae52e";
+
 export function ContactForm({ variant = "contact" }: { variant?: "contact" | "claim" | "career" }) {
   const formId = useId();
   const {
@@ -29,19 +31,39 @@ export function ContactForm({ variant = "contact" }: { variant?: "contact" | "cl
 
   async function onSubmit(values: FormValues) {
     try {
-      let apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000/api/v1";
-      if (!apiUrl.endsWith("/api/v1")) apiUrl = `${apiUrl.replace(/\/$/, "")}/api/v1`;
-      
-      const res = await fetch(`${apiUrl}/enquiries`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...values, source: variant })
-      });
-      if (!res.ok) throw new Error("Failed to submit enquiry");
+      let isSuccess = false;
 
-      const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
-      if (accessKey) {
-        await fetch("https://api.web3forms.com/submit", {
+      // 1. Post to internal Next.js API route (runs directly on Vercel)
+      try {
+        const res = await fetch("/api/enquiries", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ...values, source: variant })
+        });
+        if (res.ok) {
+          const data = await res.json().catch(() => ({}));
+          if (data.success !== false) {
+            isSuccess = true;
+          }
+        }
+      } catch (err) {
+        console.warn("Internal API route submission failed, trying direct Web3Forms fallback:", err);
+      }
+
+      // 2. Direct fallback to Web3Forms if internal route could not be reached
+      if (!isSuccess) {
+        const accessKey =
+          process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ||
+          DEFAULT_WEB3FORMS_KEY;
+
+        const categoryLabel =
+          variant === "claim"
+            ? "Claims Assistance Request"
+            : variant === "career"
+            ? "Career Application"
+            : "General Enquiry";
+
+        const web3Res = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
           headers: { "Content-Type": "application/json", Accept: "application/json" },
           body: JSON.stringify({
@@ -51,10 +73,22 @@ export function ContactForm({ variant = "contact" }: { variant?: "contact" | "cl
             phone: values.phone,
             interest: values.interest,
             message: values.message,
-            subject: `New InsuCARE enquiry: ${values.interest}`,
-            from_name: "InsuCARE"
+            source: categoryLabel,
+            subject: `New InsuCARE ${categoryLabel}: ${values.interest} (${values.name})`,
+            from_name: "InsuCARE Website"
           })
         });
+
+        if (web3Res.ok) {
+          const web3Data = await web3Res.json().catch(() => ({}));
+          if (web3Data.success || web3Res.status === 200) {
+            isSuccess = true;
+          }
+        }
+      }
+
+      if (!isSuccess) {
+        throw new Error("Form submission could not be verified");
       }
 
       reset();
